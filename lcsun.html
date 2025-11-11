@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCSUN - Litti Chokha Student Union of NEHU</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+        @layer base {
+            h1, h2, h3, h4, h5, h6 {
+                @apply font-serif text-white;
+            }
+            body {
+                @apply font-sans;
+            }
+        }
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        /* A subtle background pattern for the hero */
+        .hero-pattern {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+            background-size: 1.2rem 1.2rem;
+        }
+
+        .manifesto-plank {
+            @apply bg-slate-800 p-8 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-slate-700 hover:border-accent;
+        }
+        
+        /* === EDIT: Added 'relative' to make the star visible by default === */
+        .team-card {
+            @apply relative bg-slate-800 p-6 rounded-xl shadow-lg border border-slate-700 text-left flex flex-col transition-all duration-300 hover:border-slate-600 h-full hover:-translate-y-1 hover:shadow-xl;
+        }
+
+        /* === EDIT: Added keyframes and utility classes for entry animations === */
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.6s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.6s ease-out forwards;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        // New "Presidential" Dark Theme
+                        primary: {
+                            light: '#1e293b', // slate-800
+                            DEFAULT: '#0f172a', // slate-900
+                            dark: '#020617', // slate-950
+                        },
+                        accent: {
+                            light: '#fde68a', // amber-300
+                            DEFAULT: '#facc15', // yellow-400
+                            dark: '#eab308', // yellow-500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-primary-dark text-slate-300 leading-relaxed">
+
+    <header class="bg-primary-dark/90 backdrop-blur-md sticky top-0 z-50 shadow-lg border-b border-primary-light">
+        <nav class="container mx-auto px-4 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center space-x-3">
+                <img src="lcsun.png" alt="LCSUN Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/100x100/0f172a/facc15?text=LCSUN'">
+                <span class="hidden sm:inline font-bold text-white text-lg">
+                    LCSUN - Litti Chokha Student Union of NEHU
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-6">
+                <!-- === EDIT: Added transform and hover:-translate-y-0.5 to nav links === -->
+                <a href="#home" class="text-slate-300 hover:text-accent transition-all duration-300 transform hover:-translate-y-0.5">Home</a>
+                <a href="#team" class="text-slate-300 hover:text-accent transition-all duration-300 transform hover:-translate-y-0.5">High Command</a>
+                <a href="#manifesto" class="text-slate-300 hover:text-accent transition-all duration-300 transform hover:-translate-y-0.5">Manifesto</a>
+                <a href="#join" class="bg-accent text-primary-dark px-4 py-2 rounded-full font-bold hover:bg-accent-light transition-colors shadow-md hover:shadow-lg hover:-translate-y-0.5 transform">
+                    Join Us
+                </a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-primary-light focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-primary-dark shadow-lg border-t border-primary-light">
+            <a href="#home" class="block w-full px-5 py-3 text-slate-300 hover:bg-primary-light">Home</a>
+            <a href="#team" class="block w-full px-5 py-3 text-slate-300 hover:bg-primary-light">High Command</a>
+            <a href="#manifesto" class="block w-full px-5 py-3 text-slate-300 hover:bg-primary-light">Manifesto</a>
+            <a href="#join" class="block w-full px-5 py-3 text-accent font-medium hover:bg-primary-light">Join Us</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="home" class="relative bg-primary-dark hero-pattern pt-24 pb-32 overflow-hidden text-center">
+            <div class="container mx-auto px-4 lg:px-8 relative z-10">
+                
+                <!-- === USER EDIT: Added Logo to Hero Section. EDIT: Added animation === -->
+                <img src="lcsun.png" alt="LCSUN Logo" class="h-28 w-auto mx-auto mb-8 rounded-full shadow-lg border-4 border-accent-dark/50 opacity-0 animate-fade-in" style="animation-delay: 100ms;" onerror="this.src='https://placehold.co/150x150/0f172a/facc15?text=LCSUN'">
+                
+                <!-- === EDIT: Added animation === -->
+                <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight opacity-0 animate-fade-in-up" style="animation-delay: 300ms;">
+                    LCSUN - Litti Chokha Student Union of NEHU
+                </h1>
+                <!-- === EDIT: Added animation === -->
+                <p class="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto opacity-0 animate-fade-in-up" style="animation-delay: 500ms;">
+                    "Serving the <em>thekua</em>, Serving the Students."
+                </p>
+                <!-- === EDIT: Added animation === -->
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-accent italic max-w-4xl mx-auto leading-snug opacity-0 animate-fade-in-up" style="animation-delay: 700ms;">
+                    "Not the union you need, but the one you deserve."
+                </h2>
+                
+                <!-- === EDIT: Added animation === -->
+                <div class="max-w-2xl mx-auto mt-16 bg-primary-light/50 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-primary-light opacity-0 animate-fade-in-up" style="animation-delay: 900ms;">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-4">A Message from the President</h3>
+                    <p class="text-lg text-slate-200 italic mb-4">
+                        "Welcome to the revolution. Our administration will usher in a new era of development, dignity, and <em>dal-pithis</em>. We are the leaders you deserve, and we are here to serve. <em>Jai LCSUN!</em>"
+                    </p>
+                    <p class="text-right text-accent-light font-medium">— Prashant Kumar, President</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="team" class="py-24 bg-primary-dark/50">
+            <div class="container mx-auto px-4 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-16 text-white">
+                    Meet the High Command
+                </h2>
+                <!-- === EDIT: Changed to lg:grid-cols-3 for better card width & added max-w-7xl mx-auto === -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    
+                    <!-- === EDIT: Removed scale/shadow/ring to make all cards uniform === -->
+                    <div class="team-card bg-slate-800 border-slate-700">
+                        <span class="absolute -top-4 -right-4 p-2 bg-accent rounded-full text-primary-dark shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.76 2.31l-4.23 3.723 1.21 5.27c.28 1.22-.97 2.148-2.003 1.53l-4.7-2.798-4.7 2.798c-1.033.618-2.282-.31-2.003-1.53l1.21-5.27-4.23-3.723c-.877-.765-.403-2.217.76-2.31l5.404-.434 2.082-5.006Z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <h3 class="text-2xl font-serif font-bold mb-2 text-white">Prashant Kumar</h3>
+                        <p class="text-sm font-bold text-accent-dark uppercase tracking-wider mb-4">President</p>
+                        <blockquote class="text-accent-light text-lg italic my-4 border-l-4 border-accent-dark pl-4 text-left">
+                            "...political career began by successfully negotiating an extra spoonful of <em>chokha</em>..."
+                        </blockquote>
+                        <p class="text-slate-300 text-left">
+                            A B.Tech IT student and the chief visionary of the LCSUN. Prashant's political career began by successfully negotiating an extra spoonful of <em>chokha</em> in the hostel mess. Now he is the president of LCSUN.
+                        </p>
+                    </div>
+
+                    <div class="team-card">
+                        <!-- === EDIT: Added star === -->
+                        <span class="absolute -top-4 -right-4 p-2 bg-accent rounded-full text-primary-dark shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.76 2.31l-4.23 3.723 1.21 5.27c.28 1.22-.97 2.148-2.003 1.53l-4.7-2.798-4.7 2.798c-1.033.618-2.282-.31-2.003-1.53l1.21-5.27-4.23-3.723c-.877-.765-.403-2.217.76-2.31l5.404-.434 2.082-5.006Z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <h3 class="text-2xl font-serif font-bold mb-2 text-white">Omkar Mishra</h3>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">Vice-President</p>
+                        <blockquote class="text-accent-light text-lg italic my-4 border-l-4 border-accent-dark pl-4 text-left">
+                            You can take the Bihari out of Bihar, but you cannot take the <em>sattu</em> out of his breakfast.
+                        </blockquote>
+                        <!-- === USER EDIT: Bio changed to bullet list === -->
+                        <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                            <li>A B.Tech IT Students working for betterment of NEHU students</li>
+                            <li>The 'Chanakya' to Prashant's 'Chandragupta.'</li>
+                            <li>Master strategist responsible for internal affairs.</li>
+                            <li>Manages the union's strategic <em>thekua</em> reserve.</li>
+                            <li>Enforcer of the 'Thekua Mandate,' ensuring 'first-class' operations.</li>
+                            <li>Primary role: Fact-checking the 'Bihari-ness' of new members.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="team-card">
+                        <!-- === EDIT: Added star === -->
+                        <span class="absolute -top-4 -right-4 p-2 bg-accent rounded-full text-primary-dark shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.76 2.31l-4.23 3.723 1.21 5.27c.28 1.22-.97 2.148-2.003 1.53l-4.7-2.798-4.7 2.798c-1.033.618-2.282-.31-2.003-1.53l1.21-5.27-4.23-3.723c-.877-.765-.403-2.217.76-2.31l5.404-.434 2.082-5.006Z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <h3 class="text-2xl font-serif font-bold mb-2 text-white">Pankaj Roy</h3>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">General Secretary</p>
+                        <blockquote class="text-accent-light text-lg italic my-4 border-l-4 border-accent-dark pl-4 text-left">
+                            "...'Bihari' isn't a demographic; it's a roommate-inflicted condition."
+                        </blockquote>
+                        <!-- === USER EDIT: Bio changed to bullet list === -->
+                        <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                            <li>A proud Assamese student whose cultural identity was "derailed" by room allocation.</li>
+                            <li>Tragically assigned to live with Prashant and Omkar, leading to swift <em>Biharification</em>. that's why even after being assamese, he's in our union</li>
+                            <li>Now requires <em>sattu</em> to function and his playlist is filled with Bhojpuri classics.</li>
+                            <li>Serves as the union's chief translator, turning rants into polite emails.</li>
+                            <li>Living proof that 'Bihari' is a "roommate-inflicted condition."</li>
+                        </ul>
+                    </div>
+                    <!-- === EDIT: Added lg:col-start-2 to center the second row of cards === -->
+                    <div class="team-card lg:col-start-2"> 
+                        <!-- === EDIT: Added star === -->
+                        <span class="absolute -top-4 -right-4 p-2 bg-accent rounded-full text-primary-dark shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.76 2.31l-4.23 3.723 1.21 5.27c.28 1.22-.97 2.148-2.003 1.53l-4.7-2.798-4.7 2.798c-1.033.618-2.282-.31-2.003-1.53l1.21-5.27-4.23-3.723c-.877-.765-.403-2.217.76-2.31l5.404-.434 2.082-5.006Z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <h3 class="text-2xl font-serif font-bold mb-2 text-white">Rishu</h3>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">Legal Advisor & Chief of Loopholes</p>
+                        <blockquote class="text-accent-light text-lg italic my-4 border-l-4 border-accent-dark pl-4 text-left">
+                            "I've read the hostel bylaws. It only bans 'cooking.' We are merely 'assembling pre-cooked ingredients.'"
+                        </blockquote>
+                        <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                            <li>The union's very own legal expert, tasked with reading the boring student handbook so you don't have to.</li>
+                            <li>He's the mastermind who finds all the loopholes that protect the union's right to <em>sattu</em> and <em>litti chokha</em>.</li>
+                            <li>Responsible for drafting all "official" complaints to the mess when the <em>bhujia</em>-to-poha ratio is criminally low.</li>
+                            <li>He's currently building a strong legal case to make "loud" Bhojpuri music a protected cultural activity.</li>
+                        </ul>
+                    </div>
+                    <div class="team-card">
+                        <!-- === EDIT: Added star === -->
+                        <span class="absolute -top-4 -right-4 p-2 bg-accent rounded-full text-primary-dark shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.76 2.31l-4.23 3.723 1.21 5.27c.28 1.22-.97 2.148-2.003 1.53l-4.7-2.798-4.7 2.798c-1.033.618-2.282-.31-2.003-1.53l1.21-5.27-4.23-3.723c-.877-.765-.403-2.217.76-2.31l5.404-.434 2.082-5.006Z" clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                        <h3 class="text-2xl font-serif font-bold mb-2 text-white">Ayanabh</h3>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider mb-4">Minister of Morale (and Room Audits)</p>
+                        <blockquote class="text-accent-light text-lg italic my-4 border-l-4 border-accent-dark pl-4 text-left">
+                            "'<em>Aur bhai, kuch khaane ko hai?</em>'"
+                        </blockquote>
+                        <!-- === USER EDIT: Bio changed to bullet list === -->
+                        <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                            <li>Registered to a different room but is a permanent resident of the LCSUN HQ.</li>
+                            <li>Considered a "political refugee" seeking asylum from his <em>sattu-less</em> official dorm.</li>
+                            <li>Main function: Provide 'moral support.'</li>
+                            <li>This support consists of testing bed integrity and asking for food.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="manifesto" class="py-24 bg-primary-dark">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4 text-white">
+                        Our Manifesto
+                    </h2>
+                    <p class="text-lg text-slate-400 max-w-3xl mx-auto">
+                        Here is the official promise-document for the 2026-2027 next academic term, guaranteed to bring development, dignity and <em>thekuas</em>.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-8">
+
+                    <div class="manifesto-plank">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-accent/20 rounded-full text-accent-dark flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                    <path d="M12.378 1.603a.75.75 0 0 0-.756 0l-9 4.5a.75.75 0 0 0 0 1.398L12 12l9.378-4.5a.75.75 0 0 0 0-1.398l-9-4.5z" />
+                                    <path d="M12 13.5a1.5 1.5 0 0 1-1.5-1.5v-3.362l-7.219 3.61c.14.068.283.132.43.192l8.288 4.144a.75.75 0 0 0 .756 0l8.288-4.144c.147-.06.29-.124.43-.192l-7.219-3.61v3.362a1.5 1.5 0 0 1-1.5 1.5z" />
+                                    <path d="M12.75 16.14l-8.288-4.144a.75.75 0 0 0-.756 0l-8.288 4.144a.75.75 0 0 0 0 1.398l8.288 4.144a.75.75 0 0 0 .756 0l8.288-4.144a.75.75 0 0 0 0-1.398z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-serif font-bold mb-3 text-white">1. Gastronomy & Mess Affairs</h3>
+                                <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                                    <li><strong>The Litti Chokha Act:</strong> As promised, Litti Chokha (with extra <em>desi ghee</em>) will be made a mandatory item in all hostel mess menus, to be served twice a week.</li>
+                                    <li><strong>Sattu Security:</strong> A 24/7 Sattu Dispensing Machine (SDM) will be installed outside the Central Library for late-night study sessions.</li>
+                                    <li><strong>The Bhujia Mandate:</strong> A formal inquiry will be launched into the campus canteens that serve Poha or Chowmein without a sufficient layer of <em>bhujia</em>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-plank">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-accent/20 rounded-full text-accent-dark flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                  <path fill-rule="evenodd" d="M14.615 1.585a.75.75 0 0 1 .359.852l-6.8 20.4a.75.75 0 0 1-1.448-.482l6.8-20.4a.75.75 0 0 1 1.089-.37Z" clip-rule="evenodd" />
+                                  <path fill-rule="evenodd" d="M1.04 4.256a.75.75 0 0 1 .75-.75h18a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-.75.75h-18a.75.75 0 0 1-.75-.75v-1.5Zm17.5 3.5a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-.75.75h-2a.75.75 0 0 1-.75-.75v-1.5Zm-5-3.5a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-.75.75h-2a.75.75 0 0 1-.75-.75v-1.5Zm-5 0a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-.75.75h-2a.75.75 0 0 1-.75-.75v-1.5Z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-serif font-bold mb-3 text-white">2. Cultural & Festival Affairs</h3>
+                                <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                                    <li><strong>The Thekua Protocol (Code: Chhath):</strong> Any student returning from Bihar after Chhath Puja <em>must</em> declare and distribute their <em>Thekua</em> and <em>Khajoor</em> rations.</li>
+                                    <li><strong>Punishment for Defaulters:</strong> Those who fail to bring <em>Thekua</em> will face a 'cultural fine': They must listen to a 3-hour loop of "Sorry Sorry" and write a 500-word essay.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-plank">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-accent/20 rounded-full text-accent-dark flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                  <path d="M10.5 1.125a.75.75 0 0 1 .75.75v2.668l3.523 3.523a.75.75 0 0 1 0 1.06l-3.523 3.523v2.668a.75.75 0 0 1-1.5 0v-2.668L6.227 9.53a.75.75 0 0 1 0-1.06L9.75 4.943V2.193a.75.75 0 0 1 .75-.75Z" />
+                                  <path d="M6.31 6.31a.75.75 0 0 1 1.06 0l3.13 3.13a.75.75 0 0 1 0 1.06l-3.13 3.13a.75.75 0 0 1-1.06 0l-3.13-3.13a.75.75 0 0 1 0-1.06l3.13-3.13Z" />
+                                  <path d="M17.69 6.31a.75.75 0 0 1 0 1.06l-3.13 3.13a.75.75 0 0 1-1.06 0l-3.13-3.13a.75.75 0 0 1 0-1.06l3.13-3.13a.75.75 0 0 1 1.06 0l3.13 3.13Z" />
+                                  <path d="M12 15a.75.75 0 0 1 .75.75v2.668l3.523 3.523a.75.75 0 0 1 0 1.06l-3.523 3.523v2.668a.75.75 0 0 1-1.5 0v-2.668L6.227 21.53a.75.75 0 0 1 0-1.06L9.75 16.943v-1.193a.75.75 0 0 1 .75-.75Z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-serif font-bold mb-3 text-white">3. Special Provisions</h3>
+                                <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                                    <li><strong>The 10% B.G. Quota:</strong> A 10% reservation in the main NEHUSU will be lobbied for Bihari Gays, ensuring our discourse is diverse and pro-homosexuality.</li>
+                                    <li><strong>NRB Status (Non-Resident Bihari):</strong> Students of Bihari origin will be granted special <em>NRB</em> status.</li>
+                                    <li><strong>NRB Perk 1:</strong> The right to play Bhojpuri songs in events organised by any department of NEHU.</li>
+                                    <li><strong>NRB Perk 2:</strong> The right to go back to Bihar during Chhath even when there is no holiday provided by NEHU.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-plank">
+                        <div class="flex items-start space-x-4">
+                            <div class="p-3 bg-accent/20 rounded-full text-accent-dark flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                  <path fill-rule="evenodd" d="M9.303 3.235a.75.75 0 0 1 1.06 0l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06L15.47 12 9.303 5.835a.75.75 0 0 1 0-1.06l.001-.001ZM15.75 3.235a.75.75 0 0 1 1.06 0l6.75 6.75a.75.75 0 0 1 0 1.06l-6.75 6.75a.75.75 0 1 1-1.06-1.06L21.939 12l-6.189-6.165a.75.75 0 0 1 0-1.06l.001-.001Z" clip-rule="evenodd" />
+                                  <path d="M3 5.001a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3 12a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75ZM3 18.999a.75.75 0 0 1 .75-.75h2.25a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-serif font-bold mb-3 text-white">4. Infrastructure & Integration</h3>
+                                <ul class="list-disc list-outside pl-6 space-y-2 text-slate-300">
+                                    <li><strong>The Chabutra Initiative:</strong> We will lobby for the construction of three (3) strategically placed <em>chabutras</em> (circular sitting platforms) near the canteens for <em>all</em> students.</li>
+                                    <li><strong>Aesthetic Ghamcha Racks:</strong> To promote campus beautification, we will request "official," aesthetically-pleasing drying racks, improving the view for all.</li>
+                                    <li><strong>High-Speed 'Proof-of-Life' Wi-Fi:</strong> We demand a high-bandwidth Wi-Fi zone, not for gaming, but for making buffer-free video calls home to families in <em>any</em> state.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="join" class="py-32 bg-primary-dark/50 hero-pattern">
+            <div class="container mx-auto px-4 lg:px-8 text-center">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
+                    Join the Revolution
+                </h2>
+                <p class="text-xl text-slate-300 max-w-2xl mx-auto mb-8 italic">
+                    "Are You Bihari Enough? (Or Bihari-by-Osmosis?)"
+                </P>
+                <div class="bg-slate-800 p-8 rounded-xl shadow-2xl max-w-lg mx-auto text-left border border-slate-700">
+                    <p class="text-lg text-slate-300">
+                        The LCSUN - Litti Chokha Student Union of NEHU is always looking for new members. Loyalty is prized, but <em>bhujia</em> is required.
+                        <br><br>
+                        To apply, find the LCSUN High Command in their room (you know the one) and present your offering.
+                        <br><br>
+                        <strong class="text-slate-100">Acceptable offerings include:</strong> <em>Thekua, Sattu, Bhujia</em> packets, or high-level campus gossip.
+                    </p>
+                    <a href="mailto:prashant.president@lcsun.nehusg.in" class="mt-8 inline-block w-full text-center bg-accent text-primary-dark px-6 py-3 rounded-full font-bold hover:bg-accent-light transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Contact the President
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-primary-dark text-slate-400 py-12 border-t border-primary-light">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <p>&copy; 2025 LCSUN - Litti Chokha Student Union of NEHU</p>
+            <p class="text-sm">All rights (and <em>thekuas</em>) reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when a link is clicked
+        const mobileLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+        
+        // Close menu when clicking outside of it
+        document.addEventListener('click', (e) => {
+            if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
